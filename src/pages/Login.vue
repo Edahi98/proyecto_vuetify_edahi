@@ -1,7 +1,7 @@
 <template>
   <v-container class="d-flex justify-center align-center" style="height: 100vh;">
-    <v-card class="pa-5" max-width="400">
-      <v-card-title class="text-h5">Iniciar Sesión</v-card-title>
+    <v-card class="pa-8" max-width="500">
+      <v-card-title class="text-h4">Iniciar Sesión</v-card-title>
       <v-card-text>
         <v-form @submit.prevent="handleLogin" ref="formRef">
           <v-text-field
@@ -17,7 +17,7 @@
             type="password"
             required
           ></v-text-field>
-          <v-btn type="submit" color="primary" block>Ingresar</v-btn>
+          <v-btn type="submit" color="primary" block class="mt-4">Ingresar</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
