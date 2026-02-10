@@ -12,7 +12,7 @@
           ></v-text-field>
           <v-text-field
             v-model="userName"
-            label="Contraseña"
+            label="Nombre de usuario"
             type="password"
             required
           ></v-text-field>
