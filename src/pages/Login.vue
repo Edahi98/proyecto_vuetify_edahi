@@ -17,6 +17,13 @@
             type="password"
             required
           ></v-text-field>
+          <v-alert
+          type="error"
+          variant="tonal"
+          class="mt-4 mb-6"
+          border="start">
+            errorMessage
+          </v-alert>
           <v-btn type="submit" color="primary" block class="mt-4">Ingresar</v-btn>
         </v-form>
       </v-card-text>
