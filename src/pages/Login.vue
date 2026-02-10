@@ -5,14 +5,13 @@
       <v-card-text>
         <v-form @submit.prevent="handleLogin" ref="formRef">
           <v-text-field
-            v-model="email"
-            label="Correo Electrónico"
-            type="email"
-            :rules="emailRules"
+            v-model="password"
+            label="Contrseña"
+            type="password"
             required
           ></v-text-field>
           <v-text-field
-            v-model="password"
+            v-model="userName"
             label="Contraseña"
             type="password"
             required
@@ -20,9 +19,10 @@
           <v-alert
           type="error"
           variant="tonal"
+          v-if="errorMessage"
           class="mt-4 mb-6"
           border="start">
-            errorMessage
+            {{ errorMessage }}
           </v-alert>
           <v-btn type="submit" color="primary" block class="mt-4">Ingresar</v-btn>
         </v-form>
@@ -31,25 +31,27 @@
   </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import axiosInstance from '@/config/axios';
 
-const email = ref('');
+const userName = ref('');
 const password = ref('');
-const formRef = ref(null);
+const errorMessage = ref('');
+const router = useRouter();
 
-const emailRules = [
-  (v) => !!v || 'El correo electrónico es obligatorio.',
-  (v) => /.+@.+\..+/.test(v) || 'Debe ser un correo electrónico válido.',
-];
+const loading = ref(false);
+const showPassword = ref(false);
 
 const handleLogin = () => {
-  if (formRef.value.validate()) {
-    console.log('Correo:', email.value);
-    console.log('Contraseña:', password.value);
-    // Aquí puedes agregar la lógica para autenticar al usuario
-  } else {
-    alert('Por favor, corrige los errores en el formulario.');
+  try {
+    if(!userName.value || !password.value){
+      errorMessage.value = "Rellena todos los datos";
+      return
+    }
+  } catch (e) {
+    errorMessage.value = "";
   }
 };
 </script>
